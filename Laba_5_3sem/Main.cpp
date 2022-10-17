@@ -80,9 +80,6 @@ int main(int argc, char** argv) {
             shoot = true;
         }
 
-        
-
-        
         rand_stolb = rand() % manyAliens0.get()[manyAliens0.get().size() - 1].size();
         rand_str = rand_stolb % manyAliens0.get().size();
 
@@ -120,10 +117,11 @@ int main(int argc, char** argv) {
                     shoot = false;
                     socer = "Socer: " + to_string(number);
                 }
+                if(manyAliens0.get()[j][i].get_Y() >= hero.get_Y()) hero.die();
             }
         }
 
-        if (!hero.get_dead()) {
+        if (!hero.get_dead() && !manyAliens0.dead_all() ) {
             renderWindow.clear();
 
             renderWindow.draw(background_sprite);
@@ -145,8 +143,19 @@ int main(int argc, char** argv) {
 
             renderWindow.display();
         }
-        else {
+        else if(hero.get_dead()) {
             Text text("GAME OVER!\n YOU DEAD(\n\t " + socer, font, 100);
+            text.setPosition(SCREEN_HEIGHT / 2 + BASE_SIZE * 10, SCREEN_WIDTH / 3 + BASE_SIZE * 4);
+            text.setStyle(sf::Text::Bold);
+
+            renderWindow.clear();
+
+            renderWindow.draw(text);
+
+            renderWindow.display();
+        }
+        else {
+            Text text("YOU WIN\n\t " + socer, font, 100);
             text.setPosition(SCREEN_HEIGHT / 2 + BASE_SIZE * 10, SCREEN_WIDTH / 3 + BASE_SIZE * 4);
             text.setStyle(sf::Text::Bold);
 

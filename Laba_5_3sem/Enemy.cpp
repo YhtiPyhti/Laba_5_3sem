@@ -65,9 +65,7 @@ void ManyEnemy::draw_cont(sf::RenderWindow& i_window) {
 		for (int i = 0; i < contAliens[j].size(); i++) {
 			if (!(contAliens[j][i].dead)) {
 				contAliens[j][i].draw(i_window);
-				
 			}
-
 		}
 	}
 }
@@ -133,11 +131,20 @@ void ManyEnemy::move()
 	}
 }
 
-std::vector < std::vector<Enemy>>& ManyEnemy::get()
+std::vector <std::vector<Enemy>>& ManyEnemy::get()
 {
 	return contAliens;
 }
 
 void ManyEnemy::set(std::vector<Enemy>& value) {
 	manyAliens = value;
+}
+
+bool ManyEnemy::dead_all() {
+	for (int j = 0; j < contAliens.size(); j++) {
+		for (int i = 0; i < contAliens[j].size(); i++) {
+			dead_all_enemy = dead_all_enemy & contAliens[j][i].get_dead();
+		}
+	}
+	return dead_all_enemy;
 }

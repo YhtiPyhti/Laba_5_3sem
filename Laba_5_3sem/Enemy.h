@@ -28,6 +28,7 @@ public:
 	float x_begin_cont;
 	float x_end;
 	float x_begin;
+	bool dead_all_enemy;
 
 	std::vector<Enemy> manyAliens;
 	std::vector<std::vector<Enemy>> contAliens;
@@ -41,4 +42,6 @@ public:
 	std::vector<std::vector<Enemy>>& get();
 
 	void set(std::vector<Enemy>& value);
+
+	bool dead_all();
 };
