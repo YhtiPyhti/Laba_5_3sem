@@ -91,7 +91,6 @@ void ManyEnemy::move()
 	
 		for (int i = 0; i < contAliens[j].size(); i++)
 		{
-			if (!contAliens[j][i].get_dead()) {
 				x_begin = contAliens[j][i].get_X();
 				break;
 			}
